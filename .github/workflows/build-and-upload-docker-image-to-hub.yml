@@ -1,8 +1,13 @@
 name: Build Docker image
 # This workflow is triggered 1st, 16th and 31st
 on:
-  schedule:
-    - cron: '0 0 */15 * *'
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
 jobs:
   build:
     name: latest
